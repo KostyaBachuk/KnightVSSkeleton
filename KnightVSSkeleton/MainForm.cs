@@ -42,6 +42,8 @@ namespace KnightVSSkeleton
             if (Knight.isDead())
             {
                 skeletonAttacks.Enabled = false;
+                button1.Enabled = false;
+                MessageBox.Show("Winner Knight", "game over");
             }
         }
 
@@ -52,7 +54,14 @@ namespace KnightVSSkeleton
 if (Skeleton.isDead())
             {
                 button1.Enabled = false;
+                skeletonAttacks.Enabled = false;
+                MessageBox.Show("Winner Skeleton", "game over");
+                Knight = new Fighter(knightPictureBox);
+                Skeleton = new Fighter(skeletonPictureBox);
+                knightsHealth.Text = Knight.TellHealth().ToString();
+                skeletonsHealth.Text = Skeleton.TellHealth().ToString();
             }
+            
         }
 
         private void knightsHealth_Click(object sender, EventArgs e)
