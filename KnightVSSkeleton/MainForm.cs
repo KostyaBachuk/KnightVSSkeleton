@@ -35,7 +35,7 @@ namespace KnightVSSkeleton
             throw new System.NotImplementedException();
         }
 
-        private void skeletonAttacks_Click(object sender, EventArgs e)
+        private async void skeletonAttacks_Click(object sender, EventArgs e)
         {
             Knight.ReceiveDemage(Skeleton.MakeDamage());
             knightsHealth.Text = Knight.TellHealth().ToString();
@@ -43,11 +43,19 @@ namespace KnightVSSkeleton
             {
                 skeletonAttacks.Enabled = false;
                 button1.Enabled = false;
-                MessageBox.Show("Winner Knight", "game over");
+                await Task.Delay(900);
+                MessageBox.Show("Winner Skeleton", "game over");
+                Knight = new Fighter(knightPictureBox);
+                Skeleton = new Fighter(skeletonPictureBox);
+                knightsHealth.Text = Knight.TellHealth().ToString();
+                skeletonsHealth.Text = Skeleton.TellHealth().ToString();
+                button1.Enabled = true;
+                skeletonAttacks.Enabled = true;
+                skeletonPictureBox.Image = Image.FromFile(@"C:\Users\Work\Desktop\KnightVSSkeleton-master\Assets/Skeleton_Idle.gif");
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             Skeleton.ReceiveDemage(Knight.MakeDamage());
             skeletonsHealth.Text = Skeleton.TellHealth().ToString();
@@ -55,11 +63,17 @@ if (Skeleton.isDead())
             {
                 button1.Enabled = false;
                 skeletonAttacks.Enabled = false;
-                MessageBox.Show("Winner Skeleton", "game over");
+                await Task.Delay(900);if (Skeleton.isDead())
+
+                    if(Skeleton.isDead())MessageBox.Show("Winner Knight", "game over");
                 Knight = new Fighter(knightPictureBox);
                 Skeleton = new Fighter(skeletonPictureBox);
                 knightsHealth.Text = Knight.TellHealth().ToString();
                 skeletonsHealth.Text = Skeleton.TellHealth().ToString();
+                skeletonAttacks.Enabled = true;
+                button1.Enabled = true;
+                knightPictureBox.Image = Image.FromFile(@"C:\Users\Work\Desktop\KnightVSSkeleton-master\Assets/Knight_Idle.gif");
+                
             }
             
         }
